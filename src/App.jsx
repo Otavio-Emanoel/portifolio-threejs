@@ -1,6 +1,10 @@
+// Components
+
 import './App.css'
 import Header from './Components/Header'
 import Footer from './Components/Footer'
+
+// Dependencies
 
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
@@ -8,16 +12,31 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import React from 'react'
 
-function Box(props) {
-  const ref = useRef()
-  useFrame((state, delta) => (ref.current.rotation.x += delta))
+// Three.js
+
+function Scene() {
+  const mesh = useRef()
+
+  useFrame(() => {
+    mesh.current.rotation.x += 0.01
+    mesh.current.rotation.y += 0.01
+  })
+
   return (
-    <mesh {...props} ref={ref}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="orange" />
-    </mesh>
+    <>
+      <mesh ref={mesh}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#00f0f0" />
+      </mesh>
+      <mesh position={[2, 0, 0]}>
+        <sphereGeometry args={[0.5, 32, 32]} />
+        <meshStandardMaterial color="#f00" />
+      </mesh>
+    </>
   )
 }
+
+// Canvas
 
 function CanvasContainer() {
   return (
@@ -26,35 +45,41 @@ function CanvasContainer() {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <OrbitControls />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
+        <Scene />
       </Canvas>
     </div>
   )
 }
 
+// Main
 
 function Main() {
   return (
     <main>
-        <section className='home' id='home'>
-          <div className='home-content'>
-            <h2>Meu nome é <strong>Otavio</strong></h2>
-            <p>Sou dev fullstack e estudo NodeJS e MySql.</p>
-            <div>
-              <button>
-                <a href="#projects">Projetos</a>
-              </button>
-              <button>
-                <a href="https://github.com/Otavio-Emanoel"><i class="fab fa-github"></i> Github</a>
-              </button>
-            </div>
+
+      <section className='home' id='home'>
+        <div className='home-content'>
+          <h2>Meu nome é <br /> <strong>Otavio Emanoel</strong></h2>
+          <p>Sou dev fullstack e estudo NodeJS e MySql.</p>
+          <div className='home-buttons'>
+            <button>
+              <a href="#projects"><i className="fas fa-user"></i> Sobre</a>
+            </button>
+            <button>
+              <a href="https://github.com/Otavio-Emanoel"><i class="fab fa-github"></i> Github</a>
+            </button>
           </div>
-          <div className='home-image'>
-            <CanvasContainer />
-          </div>
-        </section>
-      </main>
+        </div>
+        <div className='home-image'>
+          <CanvasContainer />
+        </div>
+      </section>
+
+      {/* <section className='about' id='about'>
+        
+      </section> */}
+      
+    </main>
   )
 }
 

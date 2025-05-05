@@ -1,4 +1,7 @@
 Canvas {
-    display: block;
-    margin: auto; 
-  }
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  display: block;
+  margin: auto;
+}

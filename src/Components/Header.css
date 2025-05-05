@@ -15,6 +15,7 @@ header {
     & h1 {
         font-size: 2rem;
         margin: 0;
+        padding: 0 20px;
         color: #4791ff;
         font-family: 'Courier New', Courier, monospace;
     }
