@@ -1,4 +1,7 @@
 import './App.css'
+import Header from './Components/Header'
+import Footer from './Components/Footer'
+
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { useRef } from 'react'
@@ -30,39 +33,10 @@ function CanvasContainer() {
   )
 }
 
-function Header() {
+
+function Main() {
   return (
-    <header>
-      <h1>Otavio Emanoel</h1>
-      <nav>
-        <ul>
-          <li><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
-          <li><a href="#about">Sobre</a></li>
-          <li><a href="#projects">Projetos</a></li>
-          <li><a href="#contact">Contato</a></li>
-        </ul>
-      </nav>
-    </header>
-  )
-}
-
-function Footer() {
-  return (
-    <footer>
-      <p>Otavio - Todos os direitos reservados</p>
-      <p>Desenvolvido por Otavio</p>
-    </footer>
-  )
-}
-
-
-function App() {
-
-  return (
-    <>
-      <Header />
-
-      <main>
+    <main>
         <section className='home' id='home'>
           <div className='home-content'>
             <h2>Meu nome é <strong>Otavio</strong></h2>
@@ -81,6 +55,17 @@ function App() {
           </div>
         </section>
       </main>
+  )
+}
+
+
+function App() {
+
+  return (
+    <>
+      <Header />
+
+      <Main />
 
       <Footer />
     </>
